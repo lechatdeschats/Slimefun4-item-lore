@@ -1,25 +1,16 @@
-name: Java CI
+name: Javadocs
 
 on:
   push:
-    branches:
-    - master
     paths:
     - 'src/**'
     - 'pom.xml'
-  pull_request:
-    paths:
-    - '.github/workflows/**'
-    - 'src/**'
-    - 'pom.xml'
-    - 'CHANGELOG.md'
 
 permissions:
   contents: read
 
 jobs:
   build:
-
     name: Maven build
     runs-on: ubuntu-latest
 
@@ -42,5 +33,5 @@ jobs:
         key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
         restore-keys: ${{ runner.os }}-m2
 
-    - name: Build with Maven
-      run: mvn package --file pom.xml
+    - name: Build Javadocs
+      run: mvn javadoc:javadoc
